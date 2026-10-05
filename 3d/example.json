@@ -1,0 +1,12 @@
+[
+  {"caption": "Long ago, on a checkered world..."},
+  {"caption": "there walked a little red one.", "red": -2.0, "hop": true},
+  {"caption": "Blue followed, curious.", "red": -1.0, "blue": 1.0, "hop": true},
+  {"caption": "Then the Void came.", "red": -1.0, "blue": 1.0, "void": {"x": 3.0, "r": 1.6}},
+  {"caption": "It swallowed blue whole!", "red": -1.0, "void": {"x": 1.0, "r": 1.6}},
+  {"caption": "Red charged. No fear.", "red": 1.0, "void": {"x": 1.0, "r": 1.6}, "hop": true},
+  {"caption": "CLIMAX! Red rode the Void!", "red": 1.0, "void": {"x": 1.0, "r": 1.2}, "hop": true},
+  {"caption": "It popped. Silence.", "red": 0.0},
+  {"caption": "Blue hopped back, alive!", "red": -1.0, "blue": 1.0, "hop": true},
+  {"caption": "The checkered world was safe. For now.", "red": -1.0, "blue": 1.0}
+]

@@ -1,0 +1,12 @@
+[
+  {"caption": "In the beginning, there was darkness."},
+  {"caption": "Then one pixel decided to exist.", "white": -3.5, "hop": true},
+  {"caption": "Wherever it went, the world lit up.", "white": 0, "hop": true},
+  {"caption": "Then the Void came.", "white": 0, "void": {"x": 3.0, "r": 1.5}},
+  {"caption": "It knew one trick. Nothing.", "void": {"x": 0, "r": 2.2}},
+  {"caption": "So the pixel ran.", "white": 2.0, "void": {"x": 0, "r": 2.2}, "hop": true},
+  {"caption": "Then the world forgot it ever was.", "void": {"x": 0, "r": 6.0}},
+  {"caption": "Except it did not forget entirely."},
+  {"caption": "Until one pixel remembered.", "white": 0, "hop": true, "void": {"x": 3.0, "r": 0.6}},
+  {"caption": "Maybe the world just needs a fresh start.", "white": 0}
+]
