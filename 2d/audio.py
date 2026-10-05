@@ -1,17 +1,28 @@
-import math, wave, struct
+"""Deterministic synthesized score -> audio.wav (39.5s mono 44100Hz).
+The committed wav is the reference: any rewrite must stay byte-identical
+(`cmp` against it). Keep every float expression verbatim — 0.02+0.1 is NOT
+0.12 in floating point, and envelope boundaries depend on it.
+Usage: python3 audio.py
+"""
+import math, wave, sys
+from array import array
 SR=44100; D=39.5; N=int(SR*D)
 buf=[0.0]*N
-def env(t,a,d,s,r,dur):
-    if t<a: return t/a
-    if t<a+d: return 1-(1-s)*(t-a)/d
-    if t<dur-r: return s
-    return max(0,s*(1-(t-(dur-r))/r))
+_sin=math.sin; _pi2=2*math.pi
 def tone(f0,t0,dur,vol=0.2,f1=None,type='sine'):
-    for i in range(int(t0*SR), min(N,int((t0+dur)*SR))):
-        t=(i-t0*SR)/SR
-        f=f0*(f1/f0)**(t/dur) if f1 else f0
-        v=math.sin(2*math.pi*f*t) if type=='sine' else (1 if math.sin(2*math.pi*f*t)>0 else -1)*0.5
-        buf[i]+=vol*v*env(t,0.02,0.1,0.7,0.2,dur)
+    t0SR=t0*SR; ratio=(f1/f0) if f1 else None
+    lo,hi=int(t0SR),min(N,int((t0+dur)*SR))
+    tri=type!='sine'
+    for i in range(lo,hi):
+        t=(i-t0SR)/SR
+        f=f0*ratio**(t/dur) if ratio else f0
+        ph=_pi2*f*t
+        v=(1 if _sin(ph)>0 else -1)*0.5 if tri else _sin(ph)
+        if t<0.02: e=t/0.02
+        elif t<0.02+0.1: e=1-(1-0.7)*(t-0.02)/0.1
+        elif t<dur-0.2: e=0.7
+        else: e=max(0,0.7*(1-(t-(dur-0.2))/0.2))
+        buf[i]+=vol*v*e
 def noise(t0,dur,vol=0.05,fc=0.9):
     st=0
     for i in range(int(t0*SR), min(N,int((t0+dur)*SR))):
@@ -19,11 +30,11 @@ def noise(t0,dur,vol=0.05,fc=0.9):
         buf[i]+=vol*st
 # S1 intro: quiet drone + blinks
 tone(110,0.5,3.0,0.05); tone(165,0.5,3.0,0.03)
-tone(880,1.2,0.15,0.08,type='sine'); tone(880,2.2,0.15,0.08)
+tone(880,1.2,0.15,0.08); tone(880,2.2,0.15,0.08)
 # S2 explore: pentatonic plucks rising
 notes=[261,294,330,392,440,523,587,659]
 for k,f in enumerate(notes):
-    tone(f,5+k*0.5,0.4,0.12,type='triangle' if (f:=f) else None) if False else tone(f,5+k*0.5,0.4,0.12)
+    tone(f,5+k*0.5,0.4,0.12)
 # S3 void: dissonant swell + heartbeat
 tone(65,9.5,6.0,0.12,f1=55); tone(92,9.5,6.0,0.08,f1=98)
 for hb in (10.5,11.2,12.6,13.3): tone(60,hb,0.2,0.25)
@@ -39,10 +50,10 @@ for k in range(24): tone(maj[k%5],24+k*0.35,0.35,0.1)
 tone(523,33,5,0.15); tone(659,33,5,0.12); tone(784,33,5,0.12); tone(1046,33,5,0.08)
 # master: normalize + fade last sec
 mx=max(abs(v) for v in buf) or 1
-out=bytearray()
-for i,v in enumerate(buf):
-    t=i/SR
-    fade=min(1,(D-t)/1.0) if t>D-1 else 1
-    out+=struct.pack('<h',int(32767*0.8*v/mx*fade))
-w=wave.open('audio.wav','wb'); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes(bytes(out)); w.close()
+A=32767*0.8
+tail=int((D-1)*SR)
+vals=[int(A*v/mx) for v in buf[:tail]]+[int(A*v/mx*min(1,(D-i/SR)/1.0)) for i,v in enumerate(buf[tail:],tail)]
+out=array('h',vals)
+if sys.byteorder!='little': out.byteswap()
+w=wave.open('audio.wav','wb'); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes(out.tobytes()); w.close()
 print('audio.wav done')
