@@ -1,29 +1,82 @@
-# JusAnim
+<p align="center">
+  <img src="docs/logo.png" width="320" alt="JusAnim"/>
+</p>
 
-Tiny procedural animation library. Zero dependencies beyond Python + ffmpeg.
+<h1 align="center">JusAnim</h1>
 
-## Layout
+<p align="center">
+  <i>Tiny procedural animation library.<br>Pure Python + ffmpeg. No dependencies, no excuses.</i>
+</p>
 
-- `2d/` — grid-world pixel story engine (`make_story.py`), synthesized score (`audio.py`), captions track, finished film `the_last_pixel.mp4`
-- `3d/` — sphere-world raytraced engine (`storyvid.py`), JSON-driven scripts
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.10+-blue" alt="python"/>
+  <img src="https://img.shields.io/badge/ffmpeg-required-red" alt="ffmpeg"/>
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="license"/>
+  <img src="https://img.shields.io/badge/dependencies-zero-brightgreen" alt="deps"/>
+</p>
 
-## 3D usage
+---
 
-```
+## ✦ What it is
+
+Two tiny engines that turn JSON scripts into finished short films:
+
+<table>
+<tr>
+<td width="50%">
+
+### `2d/` — pixel story engine
+A grid world where a single pixel paints the universe. Synthesized score included.
+
+<img src="docs/preview_2d.gif" width="100%"/>
+
+</td>
+<td width="50%">
+
+### `3d/` — sphere world engine
+Raytraced sphere people on a checkered plane, orbiting cameras, JSON-driven.
+
+<img src="docs/preview_3d.gif" width="100%"/>
+
+</td>
+</tr>
+</table>
+
+## ✦ Quickstart
+
+```bash
 cd 3d
 python3 storyvid.py last_pixel_3d.json out.mp4
 ```
 
-Each beat: `{"caption": "...", "white": x|null, "red": x|null, "blue": x|null, "void": {"x": x, "r": r}|null, "hop": true|false}`
+Every beat of a story is one JSON object:
 
-## 2D usage
-
-```
-cd 2d
-python3 make_story.py   # renders frames (edit OUT for output dir)
+```json
+{ "caption": "Then the Void came.", "white": 0, "void": {"x": 3.0, "r": 1.5}, "hop": true }
 ```
 
-## Videos
+`x` positions, the void's `{x, r}`, visibility (`null` hides), hop-walk cycles, captions — that's the whole API.
 
-All finished renders are attached to the v1.0 release:
-https://github.com/shubh72010/JusAnim/releases/tag/v1.0
+## ✦ The Last Pixel — in both dimensions
+
+| | 2D | 3D |
+|---|---|---|
+| Engine | `2d/make_story.py` | `3d/storyvid.py` |
+| Runtime | 36s | 12s |
+| Audio | full score | compressed score |
+| Script format | code edit + `caps3.txt` | `last_pixel_3d.json` |
+
+## ✦ Videos
+
+All finished renders attached to the [v1.0 release](https://github.com/shubh72010/JusAnim/releases/tag/v1.0).
+
+## ✦ Roadmap
+
+- [ ] more actors, colors, and cameras in the 3D engine
+- [ ] a proper scene DSL parsing scenes → JSON
+- [ ] sprite shapes (squares, triangles) in the 2D engine
+- [ ] audio narration
+
+---
+
+<p align="center"><i>Maybe the world just needs a fresh start.</i></p>
