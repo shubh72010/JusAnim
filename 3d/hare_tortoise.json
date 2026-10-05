@@ -1,0 +1,17 @@
+[
+  {"caption": "The Hare and the Tortoise. After Aesop."},
+  {"caption": "A Hare mocked the slow Tortoise.", "red": -2.0, "blue": 2.0, "hop": true},
+  {"caption": "Do you ever get anywhere, he laughed.", "red": -2.0, "blue": 2.0, "hop": true},
+  {"caption": "I will race you and prove it.", "red": -2.0, "blue": 2.0, "white": 0.0},
+  {"caption": "The Fox marked the distance.", "red": -2.5, "blue": -2.5, "white": 0.0},
+  {"caption": "And started them off.", "red": -1.0, "blue": -2.0, "white": 0.0, "hop": true},
+  {"caption": "The Hare was soon far out of sight.", "red": 2.5, "blue": -1.0, "white": 0.0, "hop": true},
+  {"caption": "He lay down to nap by the course.", "red": 2.5, "blue": -0.5, "white": 0.0, "void": {"x": 2.5, "r": 1.0}},
+  {"caption": "The Tortoise kept going, slow and steady.", "red": 2.5, "blue": 0.5, "white": 0.0, "void": {"x": 2.5, "r": 1.2}},
+  {"caption": "He passed the sleeping Hare.", "red": 2.5, "blue": 2.0, "white": 0.5, "void": {"x": 2.5, "r": 1.2}},
+  {"caption": "The Hare slept on peacefully.", "red": 2.5, "blue": 2.8, "white": 1.0, "void": {"x": 2.5, "r": 1.0}},
+  {"caption": "At last he woke.", "red": 2.5, "blue": 3.0, "white": 1.5, "hop": true},
+  {"caption": "He ran his swiftest.", "red": 2.0, "blue": 3.0, "white": 1.5, "hop": true},
+  {"caption": "But he could not overtake in time.", "red": 2.0, "blue": 3.0, "white": 1.5},
+  {"caption": "The race is not always to the swift.", "red": 1.5, "blue": 3.0, "white": 0.5}
+]

@@ -1,0 +1,30 @@
+{
+  "settings": {"W": 320, "H": 200, "FPS": 10, "BEAT_FRAMES": 12},
+  "beats": [
+    {"caption": "Boundless demo. Any shape, any count.",
+     "camera": [0, 2.2, -7.0],
+     "objects": [
+       {"id": "hero", "shape": "person", "pos": [-2.5, 0, 0], "color": [220, 70, 70], "hop": true},
+       {"id": "cube", "shape": "box", "pos": [2.0, 0.5, 1.0], "size": [1, 1, 1], "color": [90, 200, 255]},
+       {"id": "orb", "shape": "sphere", "pos": [0, 2.0, 2.0], "r": 0.4, "color": [255, 220, 90]}
+     ]},
+    {"caption": "Boxes have size. Orbs float. Camera moves.",
+     "camera": [2.0, 2.5, -6.0],
+     "objects": [
+       {"id": "hero", "shape": "person", "pos": [0, 0, 0], "color": [220, 70, 70], "hop": true},
+       {"id": "cube", "shape": "box", "pos": [2.0, 1.0, 1.0], "size": [1.5, 0.5, 1], "color": [90, 200, 255]},
+       {"id": "orb", "shape": "sphere", "pos": [0, 1.0, 2.0], "r": 0.6, "color": [255, 220, 90]},
+       {"id": "extra1", "shape": "sphere", "pos": [-2, 0.5, 1.0], "r": 0.5, "color": [140, 255, 140]},
+       {"id": "extra2", "shape": "box", "pos": [-1, 0.3, -1.0], "size": [0.6, 0.6, 0.6], "color": [220, 140, 255]}
+     ]},
+    {"caption": "Five actors. No limits.",
+     "camera": [-2.0, 2.0, -6.0],
+     "objects": [
+       {"id": "hero", "shape": "person", "pos": [2.0, 0, 0], "color": [220, 70, 70]},
+       {"id": "cube", "shape": "box", "pos": [0, 0.5, 2.0], "size": [2, 1, 0.5], "color": [90, 200, 255]},
+       {"id": "orb", "shape": "sphere", "pos": [2.0, 2.5, 0], "r": 0.35, "color": [255, 220, 90]},
+       {"id": "extra1", "shape": "sphere", "pos": [-2, 1.5, 0], "r": 0.5, "color": [140, 255, 140]},
+       {"id": "extra2", "shape": "box", "pos": [1, 0.3, 3.0], "size": [0.6, 0.6, 0.6], "color": [220, 140, 255]}
+     ]}
+  ]
+}
